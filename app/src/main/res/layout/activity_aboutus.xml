@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="About Us"
+        android:text="About"
         android:textAllCaps="true"
         android:textSize="50dp"
         android:textStyle="bold"
