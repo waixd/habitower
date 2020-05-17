@@ -1,49 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!---
-    * Copyright (C) 2017 The Android Open Source Project
-    * This app "You Stay Young" is for people who want to check
-    * if their habits are healthy for body and soul
-    * Is created with android studio 2.3.1
-    * as exercise for Android Basics by Google Nanodegree Program
-    * "Habit Tracker " by Dimitra Christina Nikolaidou
-
-    -->
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CatalogActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_view_body_action"
+
+
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/activity_margin" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f1f1f1">
+    </FrameLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="wrap_content"
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white" />
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:menu="@menu/bottom_nav_menu" />
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/ico_add_body_action"
-        android:layout_alignParentEnd="true" />
-
-    </RelativeLayout>
+</LinearLayout>

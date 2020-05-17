@@ -44,7 +44,7 @@ public class BodyActionDBHelper extends SQLiteOpenHelper {
                 + BodyActionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + BodyActionEntry.COLUMN_BODY_NAME + " TEXT NOT NULL, "
                 + BodyActionEntry.COLUMN_BODY_TIME + " INTEGER, "
-                + BodyActionEntry.COLUMN_BODY_DISTANCE + " INTEGER , "
+                + BodyActionEntry.COLUMN_BODY_RESET + " TEXT NOT NULL, "
                 + BodyActionEntry.COLUMN_BODY_CALORIES + " INTEGER NOT NULL DEFAULT 0);";
 
         Log.v(LOG_TAG, SQL_CREATE_BODY_TABLE);
@@ -60,5 +60,7 @@ public class BodyActionDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
     }
+
+
 
 }

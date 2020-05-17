@@ -9,13 +9,23 @@
     * "Habit Tracker " by Dimitra Christina Nikolaidou
 
     -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
     tools:context="com.example.android.habitower.EditorActivity">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        app:titleTextColor="@color/colorPrimary"
+        android:text="Insert Habit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+     ></Toolbar>
 
     <!-- Overview category -->
     <LinearLayout
@@ -30,7 +40,7 @@
 
         <!-- Input fields -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:orientation="vertical"
@@ -39,9 +49,12 @@
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_bodyaction_name"
+
                 style="@style/EditorFieldStyle"
+                android:autofillHints="true"
                 android:hint="@string/hint_action_name"
                 android:inputType="textCapWords" />
+
 
         </LinearLayout>
 
@@ -109,17 +122,13 @@
                     android:layout_weight="2"
                     android:paddingLeft="@dimen/activity_padding_left">
 
-                    <EditText
+                <Spinner
                         android:id="@+id/edit_bodyaction_distance"
                         style="@style/EditorFieldStyle"
                         android:hint="@string/hint_action_distance"
-                        android:inputType="number" />
-
-                    <!-- Units for Kilometres (m) -->
-                    <TextView
-                        android:id="@+id/label_distance_units"
-                        style="@style/EditorUnitsStyle"
-                        android:text="@string/unit_action_distance" />
+                        android:drawSelectorOnTop="true"
+                        android:entries="@array/reset_streak"
+                        android:inputType="number"></Spinner>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -155,4 +164,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>

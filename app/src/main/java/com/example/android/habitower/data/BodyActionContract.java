@@ -48,9 +48,9 @@ public final class BodyActionContract {
         /**
          * Distance of the body action.
          * <p>
-         * Type: INTEGER
+         * Type: String
          */
-        public final static String COLUMN_BODY_DISTANCE = "distance";
+        public final static String COLUMN_BODY_RESET = "reset";
 
         /**
          * Calories of the pet.

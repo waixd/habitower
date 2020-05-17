@@ -34,7 +34,7 @@ public class TodoFragment extends Fragment {
                 BodyActionContract.BodyActionEntry._ID,
                 BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME,
                 BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME,
-                BodyActionContract.BodyActionEntry.COLUMN_BODY_DISTANCE,
+                BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET,
                 BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES};
 
         // Perform a query on the pets table
@@ -63,14 +63,14 @@ public class TodoFragment extends Fragment {
             displayView.append(id + " - " +
                     BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME + " - " +
                     BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME + " - " +
-                    BodyActionContract.BodyActionEntry.COLUMN_BODY_DISTANCE + " - " +
+                    BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET + " - " +
                     BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES + "\n");
 
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME);
             int timeColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME);
-            int distanceColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_DISTANCE);
+            int distanceColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET);
             int caloriesColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES);
 
             // Iterate through all the returned rows in the cursor
@@ -80,7 +80,7 @@ public class TodoFragment extends Fragment {
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(nameColumnIndex);
                 String currentTime = cursor.getString(timeColumnIndex);
-                int currentDistance = cursor.getInt(distanceColumnIndex);
+                String currentDistance = cursor.getString(distanceColumnIndex);
                 int currentCalories = cursor.getInt(caloriesColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
@@ -110,7 +110,7 @@ public class TodoFragment extends Fragment {
         ContentValues values = new ContentValues();
         values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME, "Demo Data");
         values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME, 30);
-        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_DISTANCE, 5000);
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET, "Daily");
         values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES, 170);
 
         db.insert(BodyActionContract.BodyActionEntry.TABLE_NAME, null, values);

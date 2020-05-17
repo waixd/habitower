@@ -3,7 +3,7 @@
     <string name="app_name">Habit Tower</string>
 
     <!-- Label for overflow menu option that inserts fake action data into the app [CHAR LIMIT=20] -->
-    <string name="action_insert_dummy_data">Insert Sample Data</string>
+    <string name="action_insert_data">Insert Data</string>
 
     <!-- Label for overflow menu option that deletes all action data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">Delete All Actions</string>
@@ -21,13 +21,13 @@
     <string name="action_delete">Delete</string>
 
     <!-- Label for name of action category of attributes in the editor [CHAR LIMIT=30] -->
-    <string name="category_action">Name</string>
+    <string name="category_action">Action</string>
 
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_action_name">Type your habit</string>
 
     <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
-    <string name="category_measurement">Measurement</string>
+    <string name="category_measurement">Details</string>
 
     <!-- Label for distance information in the editor [CHAR LIMIT=30] -->
     <string name="category_distance">Distance</string>
@@ -58,5 +58,16 @@
 
     <string name="logo">LOGO</string>
 
+    <string name="text_home">Home</string>
+
+    <string name="text_insert">Insert data</string>
+
+    <string name="text_about">About</string>
+
+    <string name="menu_home">Home</string>
+
+    <string name="menu_todo">TODO List</string>
+
+    <string name="menu_about">About us</string>
 
 </resources>

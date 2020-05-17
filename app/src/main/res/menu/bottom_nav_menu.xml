@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+   >
     <item
-        android:id="@+id/text1"
-        android:enabled="true"
-        android:icon="@drawable/lipig"
-        android:title="text1"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_home"
+        android:icon="@drawable/home"
+        android:title="@string/menu_home"
+        />
     <item
-        android:id="@+id/text2"
-        android:enabled="true"
-        android:icon="@drawable/lipig"
-        android:title="text2"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_todo"
+        android:icon="@drawable/edit"
+        android:title="@string/menu_todo"
+        />
     <item
-        android:id="@+id/text3"
-        android:enabled="true"
-        android:icon="@drawable/lipig"
-        android:title="text3"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_about"
+        android:icon="@drawable/about"
+        android:title="@string/menu_about"
+        />
 
 
 </menu>
