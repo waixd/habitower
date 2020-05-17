@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="reset_streak">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </array>
+
+</resources>
