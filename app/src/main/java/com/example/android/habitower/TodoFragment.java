@@ -47,7 +47,7 @@ public class TodoFragment extends Fragment {
                 null,                  // Don't filter by row groups
                 null);                   // The sort order
 
-        TextView displayView = (TextView) view.findViewById(R.id.text_view_body_action);
+        TextView displayView = view.findViewById(R.id.text_view_body_action);
 
 
         try {
@@ -85,9 +85,9 @@ public class TodoFragment extends Fragment {
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
-                        currentTime + " - " +
+                        currentTime + " mins - " +
                         currentDistance + " - " +
-                        currentCalories));
+                        currentCalories + "\n"));
 
             }
         } finally {
@@ -96,7 +96,7 @@ public class TodoFragment extends Fragment {
             cursor.close();
         }
 
-        insertDemoAction();
+        // insertDemoAction();
         return view;
     }
 

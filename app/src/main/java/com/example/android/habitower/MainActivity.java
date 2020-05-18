@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_todo:
                 TodoFragment fragment2 = new TodoFragment();
-                fragmentTransaction.replace(R.id.container, fragment2, "HOME");
+                fragmentTransaction.replace(R.id.container, fragment2, "TODO");
                 fragmentTransaction.commit();
                 break;
             case R.id.menu_about:

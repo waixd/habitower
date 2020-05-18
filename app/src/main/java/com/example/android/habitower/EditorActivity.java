@@ -63,7 +63,7 @@ public class EditorActivity extends Activity {
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-        //No Problerm
+        //No Problem
 
         // Find all relevant views that we will need to read user input from
         mNameEditText = findViewById(R.id.edit_bodyaction_name);
