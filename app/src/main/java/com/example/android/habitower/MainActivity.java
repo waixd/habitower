@@ -1,12 +1,13 @@
 package com.example.android.habitower;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.*;
 import com.example.android.habitower.data.BodyActionDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
                 startActivity(intent);
                 // Exit activity
+                return true;
+            case R.id.action_delete_all_entries:
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
+                db.execSQL("DELETE FROM body");//delete all rows in a tabl
+                db.execSQL("DELETE FROM sqlite_sequence where name ='body'");// e
+                Toast.makeText(this, "Delete All data, refresh", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
                 return true;
         }
         return super.onOptionsItemSelected(item);
