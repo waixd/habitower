@@ -96,7 +96,7 @@ public class TodoFragment extends Fragment {
             cursor.close();
         }
 
-        // insertDemoAction();
+        insertDemoAction();
         return view;
     }
 
