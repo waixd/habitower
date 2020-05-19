@@ -1,5 +1,6 @@
 package com.example.android.habitower;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class TodoFragment extends Fragment {
     ListView listView;
     List<String> names = new ArrayList<String>();
     public BodyActionDBHelper mDbHelper;
+    
 
     @Nullable
     @Override
@@ -34,7 +36,7 @@ public class TodoFragment extends Fragment {
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
-
+        insertBodyAction();
         return view;
     }
 
@@ -92,6 +94,23 @@ public class TodoFragment extends Fragment {
 
         return names;
 }
+
+
+    private void insertBodyAction() {
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a ContentValues object where column names are the keys,
+        // and Toto's pet attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME, "Static Bicycle");
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME, 30);
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET, "daily");
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES, 170);
+
+        db.insert(BodyActionContract.BodyActionEntry.TABLE_NAME, null, values);
+
+    }
 }
 
 

@@ -1,5 +1,6 @@
 <resources>
 
+
     <string name="app_name">Habit Tower</string>
 
     <!-- Label for overflow menu option that inserts fake action data into the app [CHAR LIMIT=20] -->
@@ -69,5 +70,11 @@
     <string name="menu_todo">TODO List</string>
 
     <string name="menu_about">About us</string>
+
+    <string name="member_1_id">Wong Ka Wai 11663046</string>
+
+    <string name="select_all">Select All</string>
+
+    <string name="submit_all">Submit</string>
 
 </resources>
