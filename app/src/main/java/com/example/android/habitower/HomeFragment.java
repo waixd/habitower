@@ -1,6 +1,8 @@
 package com.example.android.habitower;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -23,13 +27,17 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
+    public static final String SHARED_PREFS = "sharedPrefs";
     ListView listView;
-    List<String> names = new ArrayList<String>();
+    List<String> names = new ArrayList<>();
     public BodyActionDBHelper mDbHelper;
     private TextView mexp_tf, mtask_tf, mfloor_tf;
-    private String mexp, mtask, mfloor;
-    private Button submit_all_btn;
-
+    public static final String TEXT = "text";
+    public static final String TEXT2 = "text";
+    private String text = "0";
+    private String text2 = "1";
+    int num = 0;
+    int floor = 10;
 
     @Nullable
     @Override
@@ -37,20 +45,59 @@ public class HomeFragment extends Fragment {
         mDbHelper = new BodyActionDBHelper(getActivity());
 
         View view = inflater.inflate(R.layout.main_page, container, false);
-        listView = (ListView) view.findViewById(R.id.listView1);
+        listView =  view.findViewById(R.id.listView1);
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
         insertBodyAction();
-        submit_all_btn = view.findViewById(R.id.submit_all);
-        mexp_tf = (TextView) view.findViewById(R.id.exp_id);
-        mtask_tf = (TextView) view.findViewById(R.id.task_id);
-        mfloor_tf = (TextView) view.findViewById(R.id.floor_id);
+        mexp_tf =  view.findViewById(R.id.exp_id);
+        mfloor_tf =  view.findViewById(R.id.floor_id);
+        final Button button = view.findViewById(R.id.submit_all);
+        button.setOnClickListener(v -> {
+            if (mexp_tf.getText() == "9"){
+                num = 0;
+                mexp_tf.setText(num+"");
+                updateFloor();
+                saveData();
+                updateViews();
 
+            } else {
+                num += 1;
+                mexp_tf.setText(num+"");
+
+            }
+            saveData();
+            // Code here executes on main thread after user presses button
+        });
+
+        updateViews();
+        loadData();
         return view;
     }
 
+    public void updateFloor(){
+        floor += 1;
+        mfloor_tf.setText(floor+"");
+    }
 
+    public void saveData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(TEXT, mexp_tf.getText().toString());
+        editor.putString(TEXT2, mfloor_tf.getText().toString());
+        editor.apply();
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        text = sharedPreferences.getString(TEXT, "");
+        text2 = sharedPreferences.getString(TEXT2, "");
+    }
+
+    public void updateViews() {
+        mexp_tf.setText(text);
+        mfloor_tf.setText(text2);
+    }
 
     private List<String> readContacts(FragmentActivity activity) {
         // Gets the database in write mode

@@ -60,6 +60,8 @@ public final class BodyActionContract {
         public final static String COLUMN_BODY_CALORIES = "calories";
 
 
+
+
     }
 
 }

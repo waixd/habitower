@@ -9,7 +9,7 @@
     <item
         android:id="@+id/menu_todo"
         android:icon="@drawable/edit"
-        android:title="@string/menu_todo"
+        android:title="@string/menu_calendar"
         />
     <item
         android:id="@+id/menu_about"

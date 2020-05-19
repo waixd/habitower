@@ -21,7 +21,7 @@ public class CustomAdapter extends ArrayAdapter {
     @SuppressWarnings("unchecked")
 
     public CustomAdapter(Context context, List<String> resource) {
-        super(context , R.layout.fragment_todo, resource);
+        super(context , R.layout.fragment_calendar, resource);
         // TODO Auto-generated constructor stub
         this.context = context;
         this.modelItems = resource;

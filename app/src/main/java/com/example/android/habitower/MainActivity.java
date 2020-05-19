@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +16,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "text";
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
+    TextView textView;
+    private String text;
 
 
 
@@ -25,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
         init();
+        textView = findViewById(R.id.exp_id);
         BottomNav = findViewById(R.id.navigation);
         BottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mDbHelper = new BodyActionDBHelper(this);
 
+    }
 
 
-        }
+
+
 
     /** set menu for optionMenu
      *
@@ -100,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 break;
             case R.id.menu_todo:
-                TodoFragment fragment2 = new TodoFragment();
+                CalendarFragment fragment2 = new CalendarFragment();
                 fragmentTransaction.replace(R.id.container, fragment2, "TODO");
                 fragmentTransaction.commit();
                 break;
@@ -118,11 +126,10 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        HomeFragment fragment1 = new HomeFragment();
-        TodoFragment fragment2 = new TodoFragment();
+        CalendarFragment fragment2 = new CalendarFragment();
         AboutFragment fragment3 = new AboutFragment();
-        fragmentTransaction.add(R.id.container, fragment1).add(R.id.container, fragment2).add(R.id.container,fragment3);
-        fragmentTransaction.hide(fragment1).hide(fragment2).hide(fragment3);
+        fragmentTransaction.add(R.id.container, fragment2).add(R.id.container,fragment3);
+        fragmentTransaction.hide(fragment2).hide(fragment3);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         showNav(R.id.menu_home);
