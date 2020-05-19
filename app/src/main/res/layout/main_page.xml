@@ -1,193 +1,220 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/job_icon"
+        android:layout_width="148dp"
+        android:layout_height="134dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pig" />
+
+    <TextView
+        android:id="@+id/job_id"
+        android:layout_width="65dp"
+        android:layout_height="42dp"
+        android:text="Job:"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/job_describe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/job_icon" />
+
+    <TextView
+        android:id="@+id/job_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="5dp"
+        android:text="Student"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/job_id"
+        app:layout_constraintTop_toBottomOf="@+id/job_icon" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <ImageView
-            android:id="@+id/job_icon"
-            android:layout_width="159dp"
-            android:layout_height="164dp"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/pig" />
+        android:id="@+id/constraintLayout"
+        android:layout_width="258dp"
+        android:layout_height="134dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/job_icon"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/job_id"
-            android:layout_width="67dp"
-            android:layout_height="46dp"
-            android:text="Job:"
-            android:textSize="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/job_describe"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_icon" />
-
-        <TextView
-            android:id="@+id/job_describe"
-            android:layout_width="339dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="5dp"
-            android:text="Student"
-            android:textSize="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/job_id"
-            app:layout_constraintTop_toBottomOf="@+id/job_icon" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="252dp"
-            android:layout_height="164dp"
-            android:layout_marginEnd="3dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/job_icon"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/exp_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EXP"
-                android:textSize="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/exp_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="32dp"
-                app:layout_constraintEnd_toStartOf="@+id/exp_maximum"
-                app:layout_constraintStart_toEndOf="@+id/exp_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/exp_maximum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/10"
-                android:textSize="32dp"
-                app:layout_constraintStart_toEndOf="@+id/exp_id"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/total_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="19dp"
-                android:text="Task"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/floor_textfield"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/exp_textview" />
-
-            <TextView
-                android:id="@+id/floor_textfield"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Floor"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/floor_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="1"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/floor_textfield2"
-                app:layout_constraintStart_toEndOf="@+id/floor_image" />
-
-            <TextView
-                android:id="@+id/floor_textfield2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/F"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/floor_id" />
-
-            <ImageView
-                android:id="@+id/exp_image"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                app:layout_constraintEnd_toStartOf="@+id/exp_id"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/exp" />
-
-            <ImageView
-                android:id="@+id/floor_image"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/floor_id"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/floor" />
-
-            <ImageView
-                android:id="@+id/task_image"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="19dp"
-                android:layout_marginBottom="25dp"
-                app:layout_constraintBottom_toTopOf="@+id/floor_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/exp_image"
-                app:srcCompat="@drawable/task" />
-
-            <TextView
-                android:id="@+id/task_id"
-                android:layout_width="119dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="19dp"
-                android:text="0"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/floor_id"
-                app:layout_constraintStart_toEndOf="@+id/task_image"
-                app:layout_constraintTop_toBottomOf="@+id/exp_id"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="417dp"
-            android:layout_height="330dp"
-            android:layout_marginBottom="124dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_id"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/job_button"
+            android:id="@+id/exp_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="73dp"
-            android:text="Switch jobs"
+            android:text="EXP"
+            android:textSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/exp_id"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="0"
+            android:textSize="32dp"
+            app:layout_constraintEnd_toStartOf="@+id/exp_maximum"
+            app:layout_constraintStart_toEndOf="@+id/exp_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/exp_maximum"
+            android:layout_width="56dp"
+            android:layout_height="40dp"
+            android:text="/10"
+            android:textSize="32dp"
+            app:layout_constraintStart_toEndOf="@+id/exp_id"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/total_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task"
+            android:textSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exp_textview" />
+
+        <TextView
+            android:id="@+id/floor_textfield"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:text="Floor"
+            android:textSize="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_task"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/floor_id"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="100"
+            android:textSize="32dp"
+            app:layout_constraintStart_toEndOf="@+id/floor_image"
+            app:layout_constraintTop_toBottomOf="@+id/task_id" />
+
+        <TextView
+            android:id="@+id/floor_textfield2"
+            android:layout_width="43dp"
+            android:layout_height="39dp"
+            android:text="/F"
+            android:textSize="32dp"
+            app:layout_constraintStart_toEndOf="@+id/floor_id"
+            app:layout_constraintTop_toBottomOf="@+id/task_id" />
+
+        <ImageView
+            android:id="@+id/exp_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/exp_id"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/exp" />
+
+        <ImageView
+            android:id="@+id/floor_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/floor_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_image"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/floor" />
+
+        <ImageView
+            android:id="@+id/task_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exp_image"
+            app:srcCompat="@drawable/task" />
+
+        <TextView
+            android:id="@+id/task_id"
+            android:layout_width="122dp"
+            android:layout_height="40dp"
+            android:text="0"
+            android:textSize="32dp"
+            app:layout_constraintStart_toEndOf="@+id/task_image"
+            app:layout_constraintTop_toBottomOf="@+id/exp_id" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="413dp"
+        android:layout_height="423dp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/job_id">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+        <Button
+            android:id="@+id/select_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_all"/>
+
+        <Button
+            android:id="@+id/submit_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_all"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

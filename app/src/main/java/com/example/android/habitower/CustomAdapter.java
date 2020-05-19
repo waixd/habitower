@@ -11,9 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter {

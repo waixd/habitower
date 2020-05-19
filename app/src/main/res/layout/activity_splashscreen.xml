@@ -3,15 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#000000">
+    android:id="@+id/root_splash"
+    android:background="#FFFFFF">
+
     <TextView
+        android:id="@+id/project_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_id"
         android:layout_centerHorizontal="true"
-        android:text="@string/app_name"
+        android:text="@string/project_name"
         android:textSize="30sp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#000000"/>
 
     <ImageView
         android:id="@+id/logo_id"
@@ -20,6 +23,15 @@
         android:layout_centerInParent="true"
         android:src="@drawable/lipig"
         android:contentDescription="@string/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/project_id"
+        android:layout_centerHorizontal="true"
+        android:text="touch to skip the screen"
+        android:textSize="10sp"
+        android:textColor="#000000"/>
 
 
 </RelativeLayout>

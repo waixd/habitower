@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
 
     <ListView
@@ -12,16 +13,15 @@ android:orientation="vertical" >
         android:layout_weight="1"/>
 
 
-    <Button
-        android:id="@+id/select_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/select_all"/>
-
-    <Button
-        android:id="@+id/submit_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_all"/>
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="417dp"
+        android:layout_height="330dp"
+        android:layout_marginBottom="124dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/job_id"
+        app:layout_constraintVertical_bias="0.0" />
 
 </LinearLayout>

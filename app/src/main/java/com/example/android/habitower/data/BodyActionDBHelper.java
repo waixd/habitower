@@ -2,7 +2,6 @@ package com.example.android.habitower.data;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -10,7 +9,7 @@ import android.util.Log;
 import com.example.android.habitower.data.BodyActionContract.BodyActionEntry;
 
 /**
- * Database helper for Stay Young app. Manages database creation and version management.
+ * Database helper for habitower app. Manages database creation and version management.
  */
 public class BodyActionDBHelper extends SQLiteOpenHelper {
 

@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNav = findViewById(R.id.navigation);
         BottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mDbHelper = new BodyActionDBHelper(this);
-    }
+
+
+
+        }
 
     /** set menu for optionMenu
      *
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 };
 
-    /** method that navigate　導航用
+    /** method that navigate　
      *
 
      */
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /***Initial the fragment 初始化用
+    /***Initial the fragment
      *
      */
     private void init(){

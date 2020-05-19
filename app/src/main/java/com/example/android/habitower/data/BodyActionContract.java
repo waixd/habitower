@@ -4,7 +4,7 @@ package com.example.android.habitower.data;
 import android.provider.BaseColumns;
 
 /**
- * API Contract for the Stay young app.
+ * API Contract for the Habitower app.
  */
 public final class BodyActionContract {
 

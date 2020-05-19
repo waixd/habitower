@@ -3,6 +3,8 @@
 
     <string name="app_name">Habit Tower</string>
 
+    <string name="project_name">COMPS456F project</string>
+
     <!-- Label for overflow menu option that inserts fake action data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_data">Insert Data</string>
 
