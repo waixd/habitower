@@ -64,8 +64,16 @@ public class HomeFragment extends Fragment {
 
         final Button button = view.findViewById(R.id.submit_all);
         button.setOnClickListener(v -> {
+            int check = CustomAdapter.returnCheck();
+            if (check == 0){
+                makeTextAndShow(getActivity(), "Please tick a box!" ,Toast.LENGTH_SHORT);
+                CustomAdapter.resetCheck();
+                saveData();
+            } else {
+
             gainEXP();
             updateTask();
+            CustomAdapter.resetCheck();
 
             //*uncheck all checkbox after click the button**//
             for (int i = 0; i < listView.getChildCount(); i++) {
@@ -76,6 +84,7 @@ public class HomeFragment extends Fragment {
             /** make pop up message**/
             makeTextAndShow(getActivity(), "Gain EXP!" ,Toast.LENGTH_SHORT);
             saveData();
+        }
         });
         return view;
     }

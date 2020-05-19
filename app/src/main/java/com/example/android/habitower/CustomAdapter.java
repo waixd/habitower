@@ -70,7 +70,11 @@ public class CustomAdapter extends ArrayAdapter {
     }
 
     public static int returnCheck(){
+        return checkAccumulator;
+    }
 
+    public static int resetCheck(){
+        checkAccumulator = 0;
         return checkAccumulator;
     }
 }
