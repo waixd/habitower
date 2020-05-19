@@ -36,9 +36,8 @@ public class HomeFragment extends Fragment {
     public static final String TEXT2 = "text";
     private String text = "0";
     private String text2 = "1";
-    int num = 0;
-    int floor = 10;
-
+    int num;
+    int floor;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -52,30 +51,33 @@ public class HomeFragment extends Fragment {
         insertBodyAction();
         mexp_tf =  view.findViewById(R.id.exp_id);
         mfloor_tf =  view.findViewById(R.id.floor_id);
+        loadData();
+        updateViews();
         final Button button = view.findViewById(R.id.submit_all);
+
         button.setOnClickListener(v -> {
-            if (mexp_tf.getText() == "9"){
+            if (num == 9){
                 num = 0;
                 mexp_tf.setText(num+"");
                 updateFloor();
-                saveData();
-                updateViews();
-
             } else {
                 num += 1;
                 mexp_tf.setText(num+"");
-
+                saveData();
             }
+            Toast.makeText(getActivity(),"Gain EXP!",Toast.LENGTH_SHORT).show();;
             saveData();
             // Code here executes on main thread after user presses button
         });
 
-        updateViews();
-        loadData();
+
+
+
         return view;
     }
 
     public void updateFloor(){
+        floor = Integer.parseInt((String) mfloor_tf.getText());
         floor += 1;
         mfloor_tf.setText(floor+"");
     }

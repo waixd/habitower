@@ -22,13 +22,6 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-/** wait 10 second to skip splash screen**/
-        handler=new Handler();
-        handler.postDelayed(() -> {
-            Intent intent=new Intent(SplashActivity.this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        },10000);
 
 /** touch to skip splash screen**/
         RelativeLayout root_layout = (RelativeLayout) findViewById(R.id.root_splash);
@@ -37,6 +30,7 @@ public class SplashActivity extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             }
         });
