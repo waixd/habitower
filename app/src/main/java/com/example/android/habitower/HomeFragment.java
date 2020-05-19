@@ -41,7 +41,6 @@ public class HomeFragment extends Fragment {
     int exp;
     int floor;
     int task;
-    int TaskCount  = 0;
     CheckBox cb;
 
     @Nullable
@@ -62,6 +61,17 @@ public class HomeFragment extends Fragment {
         loadData();
         updateViews();
 
+        final Button button2 = view.findViewById(R.id.select_all);
+        button2.setOnClickListener(v -> {
+                    for (int i = 0; i < listView.getChildCount(); i++) {
+                        //Replace R.id.checkbox with the id of CheckBox in your layout
+                        cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+                        cb.setChecked(true);
+                    }
+
+    });
+
+        /** submit button **/
         final Button button = view.findViewById(R.id.submit_all);
         button.setOnClickListener(v -> {
             int check = CustomAdapter.returnCheck();
@@ -70,11 +80,9 @@ public class HomeFragment extends Fragment {
                 CustomAdapter.resetCheck();
                 saveData();
             } else {
-
             gainEXP();
             updateTask();
             CustomAdapter.resetCheck();
-
             //*uncheck all checkbox after click the button**//
             for (int i = 0; i < listView.getChildCount(); i++) {
                 //Replace R.id.checkbox with the id of CheckBox in your layout
@@ -88,27 +96,27 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
+
     //** count exp for user **//
     public void gainEXP(){
         if (exp == 9){
             exp = 0;
             mexp_tf.setText(exp+"");
             updateFloor();
-
         } else {
             exp += 1;
             mexp_tf.setText(exp+"");
         }
         saveData();
     }
+
+    //** update task no. for user **//
     public void updateTask(){
        int count = CustomAdapter.returnCheck();
        task = Integer.parseInt((String) mtask_tf.getText());
        task += count;
        mtask_tf.setText(task+"");
-
     }
-
 
     //** count floor for user **//
     public void updateFloor(){
@@ -187,13 +195,17 @@ public class HomeFragment extends Fragment {
 
             // Figure out the index of each column
             int nameColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME);
+            int timeColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME);
+            int distanceColumnIndex = cursor.getColumnIndex(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET);
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
                 // Use that index to extract the String or Int value of the word
                 // at the current row the cursor is on.
                 String currentName = cursor.getString(nameColumnIndex);
+                String currentTime = cursor.getString(timeColumnIndex);
+                String currentDistance = cursor.getString(distanceColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
-                names.add(currentName);
+                names.add(currentName + "\n" + currentTime + " mins / " + currentDistance);
 
             }
         } finally {
