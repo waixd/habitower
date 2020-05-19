@@ -41,7 +41,6 @@ public class HomeFragment extends Fragment {
     int exp;
     int floor;
     int task;
-    int TaskCount  = 0;
     CheckBox cb;
 
     @Nullable
@@ -62,6 +61,17 @@ public class HomeFragment extends Fragment {
         loadData();
         updateViews();
 
+        final Button button2 = view.findViewById(R.id.select_all);
+        button2.setOnClickListener(v -> {
+                    for (int i = 0; i < listView.getChildCount(); i++) {
+                        //Replace R.id.checkbox with the id of CheckBox in your layout
+                        cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+                        cb.setChecked(true);
+                    }
+
+    });
+
+        /** submit button **/
         final Button button = view.findViewById(R.id.submit_all);
         button.setOnClickListener(v -> {
             int check = CustomAdapter.returnCheck();
@@ -70,11 +80,9 @@ public class HomeFragment extends Fragment {
                 CustomAdapter.resetCheck();
                 saveData();
             } else {
-
             gainEXP();
             updateTask();
             CustomAdapter.resetCheck();
-
             //*uncheck all checkbox after click the button**//
             for (int i = 0; i < listView.getChildCount(); i++) {
                 //Replace R.id.checkbox with the id of CheckBox in your layout
@@ -88,27 +96,27 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
+
     //** count exp for user **//
     public void gainEXP(){
         if (exp == 9){
             exp = 0;
             mexp_tf.setText(exp+"");
             updateFloor();
-
         } else {
             exp += 1;
             mexp_tf.setText(exp+"");
         }
         saveData();
     }
+
+    //** update task no. for user **//
     public void updateTask(){
        int count = CustomAdapter.returnCheck();
        task = Integer.parseInt((String) mtask_tf.getText());
        task += count;
        mtask_tf.setText(task+"");
-
     }
-
 
     //** count floor for user **//
     public void updateFloor(){
