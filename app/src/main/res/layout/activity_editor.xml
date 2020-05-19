@@ -123,7 +123,7 @@
                     android:paddingLeft="@dimen/activity_padding_left">
 
                 <Spinner
-                        android:id="@+id/edit_bodyaction_distance"
+                        android:id="@+id/edit_reset_streak"
                         style="@style/EditorFieldStyle"
                         android:hint="@string/hint_action_distance"
                         android:drawSelectorOnTop="true"
@@ -133,35 +133,9 @@
                 </RelativeLayout>
             </LinearLayout>
             <!-- Burned Calories field -->
-            <LinearLayout
-                android:id="@+id/container_burned_calories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:paddingLeft="@dimen/activity_padding_left">
 
-                    <EditText
-                        android:id="@+id/edit_bodyaction_calories"
-                        style="@style/EditorFieldStyle"
-                        android:layout_alignBaseline="@+id/label_calories_units"
-                        android:layout_alignBottom="@+id/label_calories_units"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:hint="@string/hint_action_calories"
-                        android:inputType="number" />
 
-                    <!-- Units for calories (cal) -->
-                    <TextView
-                        android:id="@+id/label_calories_units"
-                        style="@style/EditorUnitsStyle"
-                        android:text="@string/unit_action_calories" />
-                </RelativeLayout>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

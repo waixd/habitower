@@ -14,10 +14,11 @@ import android.widget.TextView;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter {
-
+    private static int checkAccumulator;
     Context context;
     List<String> modelItems;
     boolean[] checkBoxState;
+    private static int checkBoxCounter = 0;
     @SuppressWarnings("unchecked")
 
     public CustomAdapter(Context context, List<String> resource) {
@@ -47,6 +48,8 @@ public class CustomAdapter extends ArrayAdapter {
                 if(isChecked){
 
                     checkBoxState[pos.intValue()]=true;
+                    countCheck(isChecked);
+
                 }
                 else{
                     checkBoxState[pos.intValue()]=false;
@@ -60,5 +63,14 @@ public class CustomAdapter extends ArrayAdapter {
             cb.setChecked(checkBoxState[position]);
 
         return convertView;
+    }
+
+    private void countCheck(boolean isChecked) {
+        checkAccumulator += isChecked ? 1 : -1 ;
+    }
+
+    public static int returnCheck(){
+
+        return checkAccumulator;
     }
 }

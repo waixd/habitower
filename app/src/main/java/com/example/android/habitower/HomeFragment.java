@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,77 +29,118 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     public static final String SHARED_PREFS = "sharedPrefs";
-    ListView listView;
     List<String> names = new ArrayList<>();
     public BodyActionDBHelper mDbHelper;
     private TextView mexp_tf, mtask_tf, mfloor_tf;
-    public static final String TEXT = "text";
-    public static final String TEXT2 = "text";
-    private String text = "0";
-    private String text2 = "1";
-    int num;
+    public static final String TEXT = "EXP";
+    public static final String TEXT2 = "Floor";
+    public static final String TEXT3 = "Task";
+    private String text =  "";
+    private String text2 = "";
+    private String text3 = "";
+    int exp;
     int floor;
+    int task;
+    int TaskCount  = 0;
+    CheckBox cb;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mDbHelper = new BodyActionDBHelper(getActivity());
-
         View view = inflater.inflate(R.layout.main_page, container, false);
-        listView =  view.findViewById(R.id.listView1);
+        ListView listView =  view.findViewById(R.id.listView1);
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
         insertBodyAction();
+
         mexp_tf =  view.findViewById(R.id.exp_id);
         mfloor_tf =  view.findViewById(R.id.floor_id);
+        mtask_tf =  view.findViewById(R.id.task_id);
+
         loadData();
         updateViews();
+
         final Button button = view.findViewById(R.id.submit_all);
-
         button.setOnClickListener(v -> {
-            if (num == 9){
-                num = 0;
-                mexp_tf.setText(num+"");
-                updateFloor();
-            } else {
-                num += 1;
-                mexp_tf.setText(num+"");
-                saveData();
+            gainEXP();
+            updateTask();
+
+            //*uncheck all checkbox after click the button**//
+            for (int i = 0; i < listView.getChildCount(); i++) {
+                //Replace R.id.checkbox with the id of CheckBox in your layout
+                cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+                cb.setChecked(false);
             }
-            Toast.makeText(getActivity(),"Gain EXP!",Toast.LENGTH_SHORT).show();;
+            /** make pop up message**/
+            makeTextAndShow(getActivity(), "Gain EXP!" ,Toast.LENGTH_SHORT);
             saveData();
-            // Code here executes on main thread after user presses button
         });
-
-
-
-
         return view;
     }
+    //** count exp for user **//
+    public void gainEXP(){
+        if (exp == 9){
+            exp = 0;
+            mexp_tf.setText(exp+"");
+            updateFloor();
 
+        } else {
+            exp += 1;
+            mexp_tf.setText(exp+"");
+        }
+        saveData();
+    }
+    public void updateTask(){
+       int count = CustomAdapter.returnCheck();
+       task = Integer.parseInt((String) mtask_tf.getText());
+       task += count;
+       mtask_tf.setText(task+"");
+
+    }
+
+
+    //** count floor for user **//
     public void updateFloor(){
         floor = Integer.parseInt((String) mfloor_tf.getText());
         floor += 1;
         mfloor_tf.setText(floor+"");
     }
 
+    /** save user data into sharedPreferences**/
     public void saveData() {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(TEXT, mexp_tf.getText().toString());
         editor.putString(TEXT2, mfloor_tf.getText().toString());
+        editor.putString(TEXT3, mtask_tf.getText().toString());
         editor.apply();
     }
-
+    /** load user data from sharedPreferences**/
     public void loadData() {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        text = sharedPreferences.getString(TEXT, "");
-        text2 = sharedPreferences.getString(TEXT2, "");
+        text = sharedPreferences.getString(TEXT, "0");
+        text2 = sharedPreferences.getString(TEXT2, "1");
+        text3 = sharedPreferences.getString(TEXT3, "2");
     }
 
+    /** update view from sharedPreferences**/
     public void updateViews() {
         mexp_tf.setText(text);
         mfloor_tf.setText(text2);
+        mtask_tf.setText(text3);
+    }
+
+    static Toast toast;
+    private static void makeTextAndShow(final Context context, final String t_text, final int duration) {
+        if (toast == null) {
+            toast = android.widget.Toast.makeText(context, t_text, duration);
+        } else {
+            toast.setText(t_text);
+            toast.setDuration(duration);
+        }
+        toast.show();
     }
 
     private List<String> readContacts(FragmentActivity activity) {

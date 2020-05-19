@@ -43,12 +43,11 @@ public class EditorActivity extends Activity {
     /**
      * EditText field to enter the body action's distance
      */
-    private Spinner mDistanceEditText;
+    private Spinner mResetStreak;
 
     /**
-     * EditText field to enter the body action's burned energy
-     */
-    private EditText mCaloriesEditText;
+     * EditText field to enter the body action's burned energy     */
+
 
 
 
@@ -68,8 +67,7 @@ public class EditorActivity extends Activity {
         // Find all relevant views that we will need to read user input from
         mNameEditText = findViewById(R.id.edit_bodyaction_name);
         mTimeEditText = findViewById(R.id.edit_bodyaction_time);
-        mDistanceEditText = findViewById(R.id.edit_bodyaction_distance);
-        mCaloriesEditText = findViewById(R.id.edit_bodyaction_calories);
+        mResetStreak = findViewById(R.id.edit_reset_streak);
 
 
 
@@ -101,11 +99,7 @@ public class EditorActivity extends Activity {
                 else if (mTimeEditText.getText().toString().trim().matches("")){
                     Toast.makeText(this, "You did not enter a time", Toast.LENGTH_SHORT).show();
 
-                }
-                else  if (mCaloriesEditText.getText().toString().trim().matches("")){
-                    Toast.makeText(this, "You did not enter a calories", Toast.LENGTH_SHORT).show();
-
-                        } else {
+                }    else {
                     insertBodyAction();
                     NavUtils.navigateUpFromSameTask(this);
                 }
@@ -122,12 +116,9 @@ public class EditorActivity extends Activity {
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
         String timeString = mTimeEditText.getText().toString().trim();
-        String resetString = mDistanceEditText.getSelectedItem().toString().trim();
-        String caloriesString = mCaloriesEditText.getText().toString().trim();
-
+        String resetString = mResetStreak.getSelectedItem().toString().trim();
         int time = Integer.parseInt(timeString);
         String reset_streak = resetString;
-        int calories = Integer.parseInt(caloriesString);
 
         // Create database helper
         BodyActionDBHelper mDbHelper = new BodyActionDBHelper(this);
@@ -141,7 +132,7 @@ public class EditorActivity extends Activity {
         values.put(BodyActionEntry.COLUMN_BODY_NAME, nameString);
         values.put(BodyActionEntry.COLUMN_BODY_TIME, time);
         values.put(BodyActionEntry.COLUMN_BODY_RESET, reset_streak);
-        values.put(BodyActionEntry.COLUMN_BODY_CALORIES, calories);
+
 
         // Insert a new row for body action in the database, returning the ID of that new row.
         long newRowId = db.insert(BodyActionEntry.TABLE_NAME, null, values);
