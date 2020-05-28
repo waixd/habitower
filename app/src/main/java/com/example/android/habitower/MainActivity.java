@@ -1,6 +1,8 @@
 package com.example.android.habitower;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,11 +19,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String TEXT = "text";
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
     TextView textView;
-    private String text;
+    public static TextView mexp_tf, mtask_tf, mfloor_tf;
+    public static  String exp_key = "EXP";
+    public static  String floor_key = "Floor";
+    public static  String task_key = "Task";
+    public static  String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
+    public static String exp_setChecked = "false";
 
 
 
@@ -35,11 +41,20 @@ public class MainActivity extends AppCompatActivity {
         BottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mDbHelper = new BodyActionDBHelper(this);
 
+
     }
 
 
+    public void updateViews() {
+        mexp_tf.setText(exp_sp);
+        mfloor_tf.setText(floor_sp);
+        mtask_tf.setText(task_sp);
+    }
 
-
+    public static void exp_boost()
+    {
+        exp_setChecked = "true";
+    }
 
     /** set menu for optionMenu
      *
@@ -84,8 +99,11 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.menu_home:
                             showNav(R.id.menu_home);
                             return true;
-                        case R.id.menu_todo:
-                            showNav(R.id.menu_todo);
+                        case R.id.menu_calendar:
+                            showNav(R.id.menu_calendar);
+                            return true;
+                        case R.id.menu_reward:
+                            showNav(R.id.menu_reward);
                             return true;
                         case R.id.menu_about:
                             showNav(R.id.menu_about);
@@ -104,17 +122,22 @@ public class MainActivity extends AppCompatActivity {
         switch (navid){
             case R.id.menu_home:
                 HomeFragment fragment1 = new HomeFragment();
-                fragmentTransaction.replace(R.id.container, fragment1, "HOME");
+                fragmentTransaction.replace(R.id.container, fragment1, "Home");
                 fragmentTransaction.commit();
                 break;
-            case R.id.menu_todo:
+            case R.id.menu_calendar:
                 CalendarFragment fragment2 = new CalendarFragment();
-                fragmentTransaction.replace(R.id.container, fragment2, "TODO");
+                fragmentTransaction.replace(R.id.container, fragment2, "Calendar");
+                fragmentTransaction.commit();
+                break;
+            case R.id.menu_reward:
+                RewardFragment fragment3 = new RewardFragment();
+                fragmentTransaction.replace(R.id.container, fragment3, "Reward");
                 fragmentTransaction.commit();
                 break;
             case R.id.menu_about:
-                AboutFragment fragment3 = new AboutFragment();
-                fragmentTransaction.replace(R.id.container, fragment3, "About us");
+                AboutFragment fragment4 = new AboutFragment();
+                fragmentTransaction.replace(R.id.container, fragment4, "About us");
                 fragmentTransaction.commit();
                 break;
         }
@@ -126,10 +149,13 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        HomeFragment fragment = new HomeFragment();
         CalendarFragment fragment2 = new CalendarFragment();
-        AboutFragment fragment3 = new AboutFragment();
-        fragmentTransaction.add(R.id.container, fragment2).add(R.id.container,fragment3);
-        fragmentTransaction.hide(fragment2).hide(fragment3);
+        RewardFragment fragment3 = new RewardFragment();
+        AboutFragment fragment4 = new AboutFragment();
+
+        fragmentTransaction.add(R.id.container, fragment).add(R.id.container, fragment2).add(R.id.container,fragment3).add(R.id.container,fragment4);
+        fragmentTransaction.hide(fragment).hide(fragment2).hide(fragment3).hide(fragment4);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         showNav(R.id.menu_home);

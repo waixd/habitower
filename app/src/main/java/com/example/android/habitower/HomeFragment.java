@@ -18,30 +18,32 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.android.habitower.data.BodyActionContract;
 import com.example.android.habitower.data.BodyActionDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.example.android.habitower.MainActivity.exp_key;
+import static com.example.android.habitower.MainActivity.task_key;
+import static com.example.android.habitower.MainActivity.floor_key;
+import static com.example.android.habitower.MainActivity.exp_sp;
+import static com.example.android.habitower.MainActivity.task_sp;
+import static com.example.android.habitower.MainActivity.floor_sp;
+import static com.example.android.habitower.MainActivity.exp_setChecked;
 
 
 public class HomeFragment extends Fragment {
     public static final String SHARED_PREFS = "sharedPrefs";
     List<String> names = new ArrayList<>();
     public BodyActionDBHelper mDbHelper;
-    private TextView mexp_tf, mtask_tf, mfloor_tf;
-    public static final String TEXT = "EXP";
-    public static final String TEXT2 = "Floor";
-    public static final String TEXT3 = "Task";
-    private String text =  "";
-    private String text2 = "";
-    private String text3 = "";
-    int exp;
-    int floor;
-    int task;
+    public TextView mexp_tf, mtask_tf, mfloor_tf;
+    int exp_value;
+    int floor_value;
+    int task_value;
     CheckBox cb;
+
+
 
     @Nullable
     @Override
@@ -53,13 +55,13 @@ public class HomeFragment extends Fragment {
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
         insertBodyAction();
-
         mexp_tf =  view.findViewById(R.id.exp_id);
         mfloor_tf =  view.findViewById(R.id.floor_id);
         mtask_tf =  view.findViewById(R.id.task_id);
-
         loadData();
         updateViews();
+
+
 
         final Button button2 = view.findViewById(R.id.select_all);
         button2.setOnClickListener(v -> {
@@ -74,6 +76,7 @@ public class HomeFragment extends Fragment {
         /** submit button **/
         final Button button = view.findViewById(R.id.submit_all);
         button.setOnClickListener(v -> {
+
             int check = CustomAdapter.returnCheck();
             if (check == 0){
                 makeTextAndShow(getActivity(), "Please tick a box!" ,Toast.LENGTH_SHORT);
@@ -90,7 +93,7 @@ public class HomeFragment extends Fragment {
                 cb.setChecked(false);
             }
             /** make pop up message**/
-            makeTextAndShow(getActivity(), "Gain EXP!" ,Toast.LENGTH_SHORT);
+
             saveData();
         }
         });
@@ -99,54 +102,81 @@ public class HomeFragment extends Fragment {
 
     //** count exp for user **//
     public void gainEXP(){
-        if (exp == 9){
-            exp = 0;
-            mexp_tf.setText(exp+"");
+        exp_value = Integer.parseInt((String) mexp_tf.getText());
+        if (exp_value >= 9){
+            exp_value = 0;
+            mexp_tf.setText(exp_value+"");
             updateFloor();
-        } else {
-            exp += 1;
-            mexp_tf.setText(exp+"");
         }
+        else {
+            updateEXP();
+            }
         saveData();
     }
+    //*update EXP value for user
+    public void updateEXP() {
+        /**check if exp boost is activated**/
+        exp_value = Integer.parseInt((String) mexp_tf.getText());
+        if (exp_setChecked == "true") {
+            exp_value += 2;
+                if (exp_value < 10) {
+                    mexp_tf.setText(exp_value + "");
+                } else {
+                    updateFloor();
+                }
+            }
+            /** for exp boost not activated**/
+            else {
+                exp_value += 1;
+                mexp_tf.setText(exp_value + "");
+            }
+        }
+
+
 
     //** update task no. for user **//
     public void updateTask(){
        int count = CustomAdapter.returnCheck();
-       task = Integer.parseInt((String) mtask_tf.getText());
-       task += count;
-       mtask_tf.setText(task+"");
+       task_value = Integer.parseInt((String) mtask_tf.getText());
+       task_value += count;
+       mtask_tf.setText(task_value+"");
+
     }
 
     //** count floor for user **//
     public void updateFloor(){
-        floor = Integer.parseInt((String) mfloor_tf.getText());
-        floor += 1;
-        mfloor_tf.setText(floor+"");
+        floor_value = Integer.parseInt((String) mfloor_tf.getText());
+        floor_value += 1;
+        mfloor_tf.setText(floor_value+"");
+        mexp_tf.setText("0");
     }
 
     /** save user data into sharedPreferences**/
     public void saveData() {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(TEXT, mexp_tf.getText().toString());
-        editor.putString(TEXT2, mfloor_tf.getText().toString());
-        editor.putString(TEXT3, mtask_tf.getText().toString());
+        editor.putString(exp_key, mexp_tf.getText().toString());
+        editor.putString(floor_key, mfloor_tf.getText().toString());
+        editor.putString(task_key, mtask_tf.getText().toString());
         editor.apply();
     }
     /** load user data from sharedPreferences**/
     public void loadData() {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        text = sharedPreferences.getString(TEXT, "0");
-        text2 = sharedPreferences.getString(TEXT2, "1");
-        text3 = sharedPreferences.getString(TEXT3, "2");
+        exp_sp = sharedPreferences.getString(exp_key, "0");
+        floor_sp = sharedPreferences.getString(floor_key, "1");
+        task_sp = sharedPreferences.getString(task_key, "2");
+        exp_value =  Integer.parseInt(exp_sp);
+        floor_value = Integer.parseInt(floor_sp);
+        task_value = Integer.parseInt(task_sp);
+
     }
 
     /** update view from sharedPreferences**/
     public void updateViews() {
-        mexp_tf.setText(text);
-        mfloor_tf.setText(text2);
-        mtask_tf.setText(text3);
+        mexp_tf.setText(exp_sp);
+        mfloor_tf.setText(floor_sp);
+        mtask_tf.setText(task_sp);
     }
 
     static Toast toast;

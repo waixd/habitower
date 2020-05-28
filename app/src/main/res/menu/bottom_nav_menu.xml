@@ -6,11 +6,19 @@
         android:icon="@drawable/home"
         android:title="@string/menu_home"
         />
+
     <item
-        android:id="@+id/menu_todo"
+        android:id="@+id/menu_calendar"
         android:icon="@drawable/edit"
         android:title="@string/menu_calendar"
         />
+
+    <item
+        android:id="@+id/menu_reward"
+        android:icon="@drawable/edit"
+        android:title="@string/menu_reward"
+        />
+
     <item
         android:id="@+id/menu_about"
         android:icon="@drawable/about"
