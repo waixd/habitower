@@ -19,14 +19,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "sharedPrefs";
+
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
     TextView textView;
-    public static TextView mexp_tf, mtask_tf, mfloor_tf;
-    public static  String exp_key = "EXP";
-    public static  String floor_key = "Floor";
-    public static  String task_key = "Task";
-    public static  String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
+    public static String exp_key = "EXP";
+    public static String floor_key = "Floor";
+    public static String task_key = "Task";
+    public static String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
     public static String exp_setChecked = "false";
 
 
@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateViews() {
-        mexp_tf.setText(exp_sp);
-        mfloor_tf.setText(floor_sp);
-        mtask_tf.setText(task_sp);
-    }
 
     public static void exp_boost()
     {

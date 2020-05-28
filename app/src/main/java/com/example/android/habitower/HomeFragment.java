@@ -61,8 +61,6 @@ public class HomeFragment extends Fragment {
         loadData();
         updateViews();
 
-
-
         final Button button2 = view.findViewById(R.id.select_all);
         button2.setOnClickListener(v -> {
                     for (int i = 0; i < listView.getChildCount(); i++) {
