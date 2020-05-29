@@ -24,33 +24,31 @@ import com.example.android.habitower.data.BodyActionDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.android.habitower.MainActivity.exp_key;
-import static com.example.android.habitower.MainActivity.task_key;
-import static com.example.android.habitower.MainActivity.floor_key;
-import static com.example.android.habitower.MainActivity.exp_sp;
-import static com.example.android.habitower.MainActivity.task_sp;
-import static com.example.android.habitower.MainActivity.floor_sp;
-import static com.example.android.habitower.MainActivity.exp_setChecked;
+
 
 
 public class HomeFragment extends Fragment {
     public static final String SHARED_PREFS = "sharedPrefs";
     List<String> names = new ArrayList<>();
     public BodyActionDBHelper mDbHelper;
-    public TextView mexp_tf, mtask_tf, mfloor_tf;
+    public static TextView mexp_tf, mtask_tf, mfloor_tf, mboost_tf;
     int exp_value;
     int floor_value;
     int task_value;
     CheckBox cb;
-
-
+    public static String exp_key = "EXP";
+    public static String floor_key = "Floor";
+    public static String task_key = "Task";
+    public static String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
+    public static String exp_setChecked = "";
+    ListView listView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mDbHelper = new BodyActionDBHelper(getActivity());
         View view = inflater.inflate(R.layout.main_page, container, false);
-        ListView listView =  view.findViewById(R.id.listView1);
+        listView =  view.findViewById(R.id.listView1);
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
@@ -58,46 +56,50 @@ public class HomeFragment extends Fragment {
         mexp_tf =  view.findViewById(R.id.exp_id);
         mfloor_tf =  view.findViewById(R.id.floor_id);
         mtask_tf =  view.findViewById(R.id.task_id);
+        mboost_tf = view.findViewById(R.id.exp_double);
         loadData();
         updateViews();
 
         final Button button2 = view.findViewById(R.id.select_all);
         button2.setOnClickListener(v -> {
-                    for (int i = 0; i < listView.getChildCount(); i++) {
-                        //Replace R.id.checkbox with the id of CheckBox in your layout
-                        cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
-                        cb.setChecked(true);
-                    }
-
+            selectALL();
     });
 
         /** submit button **/
         final Button button = view.findViewById(R.id.submit_all);
         button.setOnClickListener(v -> {
-
             int check = CustomAdapter.returnCheck();
             if (check == 0){
                 makeTextAndShow(getActivity(), "Please tick a box!" ,Toast.LENGTH_SHORT);
                 CustomAdapter.resetCheck();
-                saveData();
             } else {
             gainEXP();
             updateTask();
             CustomAdapter.resetCheck();
             //*uncheck all checkbox after click the button**//
-            for (int i = 0; i < listView.getChildCount(); i++) {
-                //Replace R.id.checkbox with the id of CheckBox in your layout
-                cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
-                cb.setChecked(false);
-            }
+                resetCheck();
             /** make pop up message**/
-
-            saveData();
+                saveData();
         }
         });
         return view;
     }
 
+    public void resetCheck(){
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            //Replace R.id.checkbox with the id of CheckBox in your layout
+            cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+            cb.setChecked(false);
+        }
+    }
+
+    public void selectALL(){
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            //Replace R.id.checkbox with the id of CheckBox in your layout
+            cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+            cb.setChecked(true);
+        }
+    }
     //** count exp for user **//
     public void gainEXP(){
         exp_value = Integer.parseInt((String) mexp_tf.getText());
@@ -109,7 +111,6 @@ public class HomeFragment extends Fragment {
         else {
             updateEXP();
             }
-        saveData();
     }
     //*update EXP value for user
     public void updateEXP() {
@@ -130,7 +131,11 @@ public class HomeFragment extends Fragment {
             }
         }
 
-
+    public static void exp_boost()
+    {
+        exp_setChecked = "true";
+        mboost_tf.setText("Boost: ON");
+    }
 
     //** update task no. for user **//
     public void updateTask(){
@@ -156,6 +161,7 @@ public class HomeFragment extends Fragment {
         editor.putString(exp_key, mexp_tf.getText().toString());
         editor.putString(floor_key, mfloor_tf.getText().toString());
         editor.putString(task_key, mtask_tf.getText().toString());
+        editor.putString("exp_boost", exp_setChecked);
         editor.apply();
     }
     /** load user data from sharedPreferences**/
@@ -167,7 +173,6 @@ public class HomeFragment extends Fragment {
         exp_value =  Integer.parseInt(exp_sp);
         floor_value = Integer.parseInt(floor_sp);
         task_value = Integer.parseInt(task_sp);
-
     }
 
     /** update view from sharedPreferences**/

@@ -23,11 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
     TextView textView;
-    public static String exp_key = "EXP";
-    public static String floor_key = "Floor";
-    public static String task_key = "Task";
-    public static String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
-    public static String exp_setChecked = "false";
+
 
 
 
@@ -46,10 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public static void exp_boost()
-    {
-        exp_setChecked = "true";
-    }
+
 
     /** set menu for optionMenu
      *
@@ -148,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         CalendarFragment fragment2 = new CalendarFragment();
         RewardFragment fragment3 = new RewardFragment();
         AboutFragment fragment4 = new AboutFragment();
-
         fragmentTransaction.add(R.id.container, fragment).add(R.id.container, fragment2).add(R.id.container,fragment3).add(R.id.container,fragment4);
         fragmentTransaction.hide(fragment).hide(fragment2).hide(fragment3).hide(fragment4);
         fragmentTransaction.addToBackStack(null);
