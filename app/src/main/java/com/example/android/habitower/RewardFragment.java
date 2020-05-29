@@ -24,7 +24,7 @@ public class RewardFragment extends Fragment{
 
         exp_boost.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View v) {
-                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 10) {
+                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 1) {
                     HomeFragment.exp_boost();
                     Toast toast = Toast.makeText(getActivity(),
                             "ACTIVATE!", Toast.LENGTH_SHORT);

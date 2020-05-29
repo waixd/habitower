@@ -18,7 +18,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String SHARED_PREFS = "sharedPrefs";
 
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;

@@ -85,6 +85,18 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(exp_key, mexp_tf.getText().toString());
+        editor.putString(floor_key, mfloor_tf.getText().toString());
+        editor.putString(task_key, mtask_tf.getText().toString());
+        editor.putString("exp_boost", exp_setChecked);
+        editor.apply();
+    }
+
     public void resetCheck(){
         for (int i = 0; i < listView.getChildCount(); i++) {
             //Replace R.id.checkbox with the id of CheckBox in your layout
@@ -134,7 +146,6 @@ public class HomeFragment extends Fragment {
     public static void exp_boost()
     {
         exp_setChecked = "true";
-        mboost_tf.setText("Boost: ON");
     }
 
     //** update task no. for user **//
@@ -180,6 +191,11 @@ public class HomeFragment extends Fragment {
         mexp_tf.setText(exp_sp);
         mfloor_tf.setText(floor_sp);
         mtask_tf.setText(task_sp);
+        if (exp_setChecked == "true") {
+            mboost_tf.setText("Boost: ON");
+        } else {
+            mboost_tf.setText("Boost: OFF");
+        }
     }
 
     static Toast toast;
