@@ -2,6 +2,7 @@ package com.example.android.habitower;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -24,14 +25,15 @@ import com.example.android.habitower.data.BodyActionDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
     public static final String SHARED_PREFS = "sharedPrefs";
     List<String> names = new ArrayList<>();
     public BodyActionDBHelper mDbHelper;
-    public static TextView mexp_tf, mtask_tf, mfloor_tf, mboost_tf;
+    public static TextView mexp_tf, mtask_tf, mfloor_tf;
+    TextView mboost_tf;
     int exp_value;
     int floor_value;
     int task_value;
@@ -39,9 +41,13 @@ public class HomeFragment extends Fragment {
     public static String exp_key = "EXP";
     public static String floor_key = "Floor";
     public static String task_key = "Task";
-    public static String exp_sp, floor_sp, task_sp, exp_boost_sp=  "";
-    public static String exp_setChecked = "";
+    public static String boost_key = "boost";
+    public static String exp_sp, floor_sp, task_sp=  "";
+    public static int exp_boost_index ;
     ListView listView;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     @Nullable
     @Override
@@ -57,8 +63,14 @@ public class HomeFragment extends Fragment {
         mfloor_tf =  view.findViewById(R.id.floor_id);
         mtask_tf =  view.findViewById(R.id.task_id);
         mboost_tf = view.findViewById(R.id.exp_double);
+
+        sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_MULTI_PROCESS);
+        editor = sharedPreferences.edit();
+
         loadData();
+        defaultEXPBoost();
         updateViews();
+
 
         final Button button2 = view.findViewById(R.id.select_all);
         button2.setOnClickListener(v -> {
@@ -78,24 +90,19 @@ public class HomeFragment extends Fragment {
             CustomAdapter.resetCheck();
             //*uncheck all checkbox after click the button**//
                 resetCheck();
-            /** make pop up message**/
-                saveData();
-        }
+            }
+            saveData();
         });
+
         return view;
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(exp_key, mexp_tf.getText().toString());
-        editor.putString(floor_key, mfloor_tf.getText().toString());
-        editor.putString(task_key, mtask_tf.getText().toString());
-        editor.putString("exp_boost", exp_setChecked);
-        editor.apply();
+        saveData();
     }
+
 
     public void resetCheck(){
         for (int i = 0; i < listView.getChildCount(); i++) {
@@ -125,10 +132,10 @@ public class HomeFragment extends Fragment {
             }
     }
     //*update EXP value for user
-    public void updateEXP() {
+       public void updateEXP() {
         /**check if exp boost is activated**/
         exp_value = Integer.parseInt((String) mexp_tf.getText());
-        if (exp_setChecked == "true") {
+        if (mboost_tf.getText().toString().equals("Boost: ON")) {
             exp_value += 2;
                 if (exp_value < 10) {
                     mexp_tf.setText(exp_value + "");
@@ -143,11 +150,13 @@ public class HomeFragment extends Fragment {
             }
         }
 
-    public static void exp_boost()
-    {
-        exp_setChecked = "true";
+    public static void exp_boost() {
+        if (exp_boost_index == 0) {
+            exp_boost_index = 1;
+        } else if (exp_boost_index == 1) {
+            exp_boost_index = 0;
+        }
     }
-
     //** update task no. for user **//
     public void updateTask(){
        int count = CustomAdapter.returnCheck();
@@ -155,6 +164,14 @@ public class HomeFragment extends Fragment {
        task_value += count;
        mtask_tf.setText(task_value+"");
 
+    }
+
+    public void defaultEXPBoost() {
+        if (exp_boost_index == 1) {
+            mboost_tf.setText("Boost: ON");
+        } else {
+            mboost_tf.setText("Boost: OFF");
+        }
     }
 
     //** count floor for user **//
@@ -167,20 +184,17 @@ public class HomeFragment extends Fragment {
 
     /** save user data into sharedPreferences**/
     public void saveData() {
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(exp_key, mexp_tf.getText().toString());
         editor.putString(floor_key, mfloor_tf.getText().toString());
         editor.putString(task_key, mtask_tf.getText().toString());
-        editor.putString("exp_boost", exp_setChecked);
         editor.apply();
     }
     /** load user data from sharedPreferences**/
     public void loadData() {
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         exp_sp = sharedPreferences.getString(exp_key, "0");
         floor_sp = sharedPreferences.getString(floor_key, "1");
-        task_sp = sharedPreferences.getString(task_key, "2");
+        task_sp = sharedPreferences.getString(task_key, "1");
+        exp_boost_index = sharedPreferences.getInt(boost_key, 0);
         exp_value =  Integer.parseInt(exp_sp);
         floor_value = Integer.parseInt(floor_sp);
         task_value = Integer.parseInt(task_sp);
@@ -191,11 +205,7 @@ public class HomeFragment extends Fragment {
         mexp_tf.setText(exp_sp);
         mfloor_tf.setText(floor_sp);
         mtask_tf.setText(task_sp);
-        if (exp_setChecked == "true") {
-            mboost_tf.setText("Boost: ON");
-        } else {
-            mboost_tf.setText("Boost: OFF");
-        }
+
     }
 
     static Toast toast;

@@ -16,12 +16,14 @@ import com.example.android.habitower.data.BodyActionDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
 
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
     TextView textView;
+
 
 
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
 
-}
+
 
