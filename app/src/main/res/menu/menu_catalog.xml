@@ -14,5 +14,10 @@
         android:title="@string/action_delete_all_entries"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_insert_sample_data"
+        android:title="Insert Sample Data"
+        app:showAsAction="never" />
+
 
 </menu>

@@ -13,6 +13,8 @@ import com.example.android.habitower.data.BodyActionDBHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.habitower.HomeFragment.bg_index;
+
 
 public class CalendarFragment extends Fragment {
     ListView listView;
@@ -24,6 +26,14 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+
+
+        if (bg_index == 1) {
+            view.setBackgroundResource(R.drawable.bg_2);
+        } else if (bg_index == 0){
+            view.setBackgroundResource(0);
+        }
         return view;
 
 

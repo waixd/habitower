@@ -1,5 +1,6 @@
 package com.example.android.habitower;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.*;
+
+import com.example.android.habitower.data.BodyActionContract;
 import com.example.android.habitower.data.BodyActionDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -75,8 +78,30 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(getIntent());
                 return true;
+            case R.id.action_insert_sample_data:
+                insertBodyAction();
+                Intent aIntent = getIntent();
+                finish();
+                startActivity(aIntent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void insertBodyAction() {
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a ContentValues object where column names are the keys,
+        // and Toto's pet attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME, "Static Bicycle");
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME, 30);
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET, "daily");
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES, 170);
+
+        db.insert(BodyActionContract.BodyActionEntry.TABLE_NAME, null, values);
+
     }
 
     /** set listener for the navigation bar

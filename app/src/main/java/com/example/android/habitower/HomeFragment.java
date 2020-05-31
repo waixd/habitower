@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,7 @@ public class HomeFragment extends Fragment {
     public BodyActionDBHelper mDbHelper;
     public static TextView mexp_tf, mtask_tf, mfloor_tf;
     TextView mboost_tf;
+    ImageView job_image;
     int exp_value;
     int floor_value;
     int task_value;
@@ -44,6 +48,8 @@ public class HomeFragment extends Fragment {
     public static String boost_key = "boost";
     public static String exp_sp, floor_sp, task_sp=  "";
     public static int exp_boost_index ;
+    public static int bg_index;
+    public static int ava_index;
     ListView listView;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -58,18 +64,25 @@ public class HomeFragment extends Fragment {
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
-        insertBodyAction();
         mexp_tf =  view.findViewById(R.id.exp_id);
         mfloor_tf =  view.findViewById(R.id.floor_id);
         mtask_tf =  view.findViewById(R.id.task_id);
         mboost_tf = view.findViewById(R.id.exp_double);
+        job_image = view.findViewById(R.id.job_icon);
 
         sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_MULTI_PROCESS);
         editor = sharedPreferences.edit();
 
         loadData();
+        if (bg_index == 1) {
+            view.setBackgroundResource(R.drawable.bg_2);
+        } else if (bg_index == 0){
+            view.setBackgroundResource(0);
+        }
+        defaultAvatar();
         defaultEXPBoost();
         updateViews();
+
 
 
         final Button button2 = view.findViewById(R.id.select_all);
@@ -157,6 +170,32 @@ public class HomeFragment extends Fragment {
             exp_boost_index = 0;
         }
     }
+
+    public static void updateAvatar() {
+        if (ava_index == 0) {
+            ava_index = 1;
+
+        } else {
+            ava_index = 0;
+        }
+    }
+
+    public void defaultAvatar() {
+        if (ava_index == 1) {
+            job_image.setImageResource(R.drawable.lipig);
+        } else if (ava_index == 0) {
+            job_image.setImageResource(R.drawable.pig);
+        }
+    }
+
+
+    public static void updateBG() {
+        if (bg_index == 0) {
+            bg_index = 1;
+        } else {
+            bg_index = 0;
+        }
+    }
     //** update task no. for user **//
     public void updateTask(){
        int count = CustomAdapter.returnCheck();
@@ -195,6 +234,8 @@ public class HomeFragment extends Fragment {
         floor_sp = sharedPreferences.getString(floor_key, "1");
         task_sp = sharedPreferences.getString(task_key, "1");
         exp_boost_index = sharedPreferences.getInt(boost_key, 0);
+        bg_index = sharedPreferences.getInt("bg_key", 0);
+        ava_index = sharedPreferences.getInt("ava_key", 0);
         exp_value =  Integer.parseInt(exp_sp);
         floor_value = Integer.parseInt(floor_sp);
         task_value = Integer.parseInt(task_sp);
@@ -207,6 +248,7 @@ public class HomeFragment extends Fragment {
         mtask_tf.setText(task_sp);
 
     }
+
 
     static Toast toast;
     private static void makeTextAndShow(final Context context, final String t_text, final int duration) {
@@ -292,6 +334,8 @@ public class HomeFragment extends Fragment {
         db.insert(BodyActionContract.BodyActionEntry.TABLE_NAME, null, values);
 
     }
+
+
 
 
 }
