@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
     public void defaultEXPBoost() {
         if (exp_boost_index == 1) {
             mboost_tf.setText("Boost: ON");
-        } else {
+        } else if (exp_boost_index == 0) {
             mboost_tf.setText("Boost: OFF");
         }
     }
