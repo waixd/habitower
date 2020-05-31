@@ -16,11 +16,9 @@
             android:id="@+id/bg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="99dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
             android:text="Background"
-            app:layout_constraintBottom_toTopOf="@+id/job_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/background_image" />
 
@@ -28,31 +26,29 @@
             android:id="@+id/background_image"
             android:layout_width="90dp"
             android:layout_height="80dp"
-            android:layout_marginTop="280dp"
-            android:layout_marginEnd="68dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="56dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
             app:srcCompat="@drawable/background_icon" />
 
         <ImageView
             android:id="@+id/exp_image"
             android:layout_width="90dp"
             android:layout_height="80dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
             app:srcCompat="@drawable/exp_icon" />
 
         <Button
             android:id="@+id/exp_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="99dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="20dp"
             android:text="EXP boost"
-            app:layout_constraintBottom_toTopOf="@+id/avatar_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exp_image" />
 
@@ -60,40 +56,40 @@
             android:id="@+id/job_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="56dp"
             android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_image" />
 
         <Button
             android:id="@+id/avatar_button"
-            android:layout_width="81dp"
-            android:layout_height="44dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="56dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginTop="20dp"
             android:text="Avatar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_image" />
 
         <ImageView
             android:id="@+id/avatar_image"
             android:layout_width="90dp"
             android:layout_height="80dp"
-            android:layout_marginStart="58dp"
-            android:layout_marginBottom="17dp"
-            app:layout_constraintBottom_toTopOf="@+id/avatar_button"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exp_button"
             app:srcCompat="@drawable/lipig" />
 
         <ImageView
             android:id="@+id/job_image"
             android:layout_width="90dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="51dp"
-            android:layout_marginBottom="17dp"
-            app:layout_constraintBottom_toTopOf="@+id/job_button"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="56dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg_button"
             app:srcCompat="@drawable/question_icon" />
 
         <EditText
