@@ -80,11 +80,17 @@ public class RewardFragment extends Fragment {
             editor.putInt("ava_key", 1);
             editor.apply();
             makeTextAndShow(getActivity(), "Switch avatar!" ,Toast.LENGTH_SHORT);
+            Intent aIntent = getActivity().getIntent();
+            getActivity().finish();
+            startActivity(aIntent);
         } else if (ava_index == 1) {
             HomeFragment.updateAvatar();
             editor.putInt("ava_key", 0);
             editor.apply();
             makeTextAndShow(getActivity(), "Switch back to original avatar!" ,Toast.LENGTH_SHORT);
+            Intent aIntent = getActivity().getIntent();
+            getActivity().finish();
+            startActivity(aIntent);
         }
     }
 
