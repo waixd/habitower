@@ -1,9 +1,7 @@
 package com.example.android.habitower;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,12 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.*;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.android.habitower.data.BodyActionContract;
 import com.example.android.habitower.data.BodyActionDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -84,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(aIntent);
                 return true;
+            case R.id.share:
+                return false;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -109,22 +109,22 @@ public class MainActivity extends AppCompatActivity {
      */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-                    switch (item.getItemId()) {
-                        case R.id.menu_home:
-                            showNav(R.id.menu_home);
-                            return true;
-                        case R.id.menu_calendar:
-                            showNav(R.id.menu_calendar);
-                            return true;
-                        case R.id.menu_reward:
-                            showNav(R.id.menu_reward);
-                            return true;
-                        case R.id.menu_about:
-                            showNav(R.id.menu_about);
-                            return true;
-                    }
-                    return false;
-                };
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                showNav(R.id.menu_home);
+                return true;
+            case R.id.menu_calendar:
+                showNav(R.id.menu_calendar);
+                return true;
+            case R.id.menu_reward:
+                showNav(R.id.menu_reward);
+                return true;
+            case R.id.menu_about:
+                showNav(R.id.menu_about);
+                return true;
+        }
+        return false;
+    };
 
     /** method that navigate　
      *
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+}
 
 
 

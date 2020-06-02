@@ -19,5 +19,9 @@
         android:title="Insert Sample Data"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/share"
+        android:title="Share to Facebook"
+        app:showAsAction="never" />
 
 </menu>
