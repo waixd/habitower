@@ -43,6 +43,7 @@ public class RewardFragment extends Fragment {
         editor = sharedPreferences.edit();
         bg_index = sharedPreferences.getInt("bg_key", 0);
 
+
         /** check the current background**/
         if (bg_index == 1) {
             view.setBackgroundResource(R.drawable.bg_2);

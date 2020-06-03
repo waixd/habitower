@@ -18,11 +18,11 @@ public class CustomAdapter extends ArrayAdapter {
     Context context;
     List<String> modelItems;
     boolean[] checkBoxState;
-    private static int checkBoxCounter = 0;
+
     @SuppressWarnings("unchecked")
 
     public CustomAdapter(Context context, List<String> resource) {
-        super(context , R.layout.fragment_calendar, resource);
+        super(context , R.layout.main_page, resource);
         // TODO Auto-generated constructor stub
         this.context = context;
         this.modelItems = resource;
