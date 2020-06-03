@@ -20,14 +20,17 @@ import static com.example.android.habitower.HomeFragment.ava_index;
 import static com.example.android.habitower.HomeFragment.bg_index;
 import static com.example.android.habitower.HomeFragment.boost_key;
 import static com.example.android.habitower.HomeFragment.exp_boost_index;
+import static com.example.android.habitower.HomeFragment.floor_key;
 import static com.example.android.habitower.HomeFragment.mfloor_tf;
-
-
+import static com.example.android.habitower.MainActivity.floor_stored;
+import static com.example.android.habitower.MainActivity.reset;
 
 
 public class RewardFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    private int count = 0;
+
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -35,44 +38,96 @@ public class RewardFragment extends Fragment {
         Button exp_boost = (Button) view.findViewById(R.id.exp_button);
         Button bg_button = (Button) view.findViewById(R.id.bg_button);
         Button ava_button = (Button) view.findViewById(R.id.avatar_button);
+        Button unknown_button = (Button) view.findViewById(R.id.job_button);
         sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_MULTI_PROCESS);
         editor = sharedPreferences.edit();
         bg_index = sharedPreferences.getInt("bg_key", 0);
 
+        /** check the current background**/
         if (bg_index == 1) {
             view.setBackgroundResource(R.drawable.bg_2);
         } else {
             view.setBackgroundResource(0);
         }
 
+        /*set listener to exp button*/
         exp_boost.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 1) {
+                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 10) {
                     do_EXP_Boost();
                 } else {
-                    Toast toast = Toast.makeText(getActivity(),
-                            "You are not yet 50 floor !!", Toast.LENGTH_SHORT);
-                    toast.show();
+                    makeTextAndShow(getActivity(), "You are not yet 10 floor !!" ,Toast.LENGTH_SHORT);
                 }
             }
-
         });
 
-        ava_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                do_avater_change();
-            }
 
-        });
-
+        /*set listener to bg button*/
         bg_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 20) {
                 do_BG_change();
+            } else {
+                    makeTextAndShow(getActivity(), "You are not yet 20 floor !!" ,Toast.LENGTH_SHORT);
             }
-
+        }
+    });
+        /*set listener to avatar button*/
+        ava_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (Integer.parseInt(mfloor_tf.getText().toString()) >= 30) {
+                    do_avater_change();
+                } else {
+                    makeTextAndShow(getActivity(), "You are not yet 30 floor !!" ,Toast.LENGTH_SHORT);
+                }
+            }
         });
+
+        unknown_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (reset) {
+                    if (count < 5 ) {
+                        count++;
+                        makeTextAndShow(getActivity(), "Grant tester right for click " + (5 - count) + " times", Toast.LENGTH_SHORT);
+                        if (count == 5) {
+                            makeTextAndShow(getActivity(), "get to 100 floor! You can activate all reward now!!", Toast.LENGTH_SHORT);
+                            floor_stored = mfloor_tf.getText().toString();
+                            mfloor_tf.setText(100 + "");
+                            editor.putString(floor_key, mfloor_tf.getText().toString());
+                            editor.apply();
+                            count = 0;
+                            reset = false;
+                        }
+                    }
+                } else if (!reset ) {
+                    if (count < 5) {
+                        count++;
+                        makeTextAndShow(getActivity(), "click " + (5 - count) + " times" + "to return to original floor", Toast.LENGTH_SHORT);
+                        if (count == 5) {
+                            makeTextAndShow(getActivity(), "back to original floor!", Toast.LENGTH_SHORT);
+                            mfloor_tf.setText(floor_stored);
+                            editor.putString(floor_key, floor_stored);
+                            editor.apply();
+                            count = 0;
+                            reset = true;
+
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+       /* return the reward page*/
         return view;
     }
+
+
+
 
     public void do_avater_change() {
         if (ava_index == 0) {
@@ -107,7 +162,6 @@ public class RewardFragment extends Fragment {
             editor.putInt("bg_key", 0);
             editor.apply();
             makeTextAndShow(getActivity(), "Back to original background!" ,Toast.LENGTH_SHORT);
-
         }
       }
 
@@ -126,7 +180,7 @@ public class RewardFragment extends Fragment {
     }
 
 
-
+/** generate toast*/
     static Toast toast;
     private static void makeTextAndShow(final Context context, final String t_text, final int duration) {
         if (toast == null) {

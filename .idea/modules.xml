@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Desktop-habitower.iml" filepath="$PROJECT_DIR$/Desktop-habitower.iml" group="habitower" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="habitower/app" />
       <module fileurl="file://$PROJECT_DIR$/habitower.iml" filepath="$PROJECT_DIR$/habitower.iml" group="habitower" />
+      <module fileurl="file://$PROJECT_DIR$/app/habitower-app.iml" filepath="$PROJECT_DIR$/app/habitower-app.iml" group="habitower/app" />
     </modules>
   </component>
 </project>

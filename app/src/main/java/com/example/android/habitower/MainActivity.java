@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public BodyActionDBHelper mDbHelper;
     private BottomNavigationView BottomNav;
     TextView textView;
+    public static boolean reset = true;
+    public static String floor_stored = "1";
 
 
 
