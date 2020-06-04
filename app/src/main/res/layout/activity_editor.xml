@@ -36,7 +36,10 @@
         <!-- Label -->
         <TextView
             style="@style/CategoryStyle"
-            android:text="@string/category_action" />
+            android:layout_width="26dp"
+            android:layout_height="match_parent"
+            android:text="@string/category_action"
+            android:textSize="20sp" />
 
         <!-- Input fields -->
         <LinearLayout
@@ -49,11 +52,11 @@
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_bodyaction_name"
-
                 style="@style/EditorFieldStyle"
                 android:autofillHints="true"
                 android:hint="@string/hint_action_name"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:textSize="20sp" />
 
 
         </LinearLayout>
@@ -69,7 +72,11 @@
 
         <TextView
             style="@style/CategoryStyle"
-            android:text="@string/category_measurement" />
+            android:layout_width="39dp"
+            android:layout_height="match_parent"
+
+            android:text="@string/category_measurement"
+            android:textSize="20sp" />
 
 
         <LinearLayout
@@ -95,16 +102,23 @@
                     android:paddingLeft="@dimen/activity_padding_left">
 
                     <!-- Time field -->
+
+                    <!-- Units for minutes of time (min) -->
+
                     <EditText
                         android:id="@+id/edit_bodyaction_time"
                         style="@style/EditorFieldStyle"
+                        android:layout_width="290dp"
+                        android:layout_height="wrap_content"
                         android:hint="@string/hint_action_time"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:textSize="20sp" />
 
-                    <!-- Units for minutes of time (min) -->
                     <TextView
                         android:id="@+id/label_time_units"
                         style="@style/EditorUnitsStyle"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
                         android:text="@string/unit_action_time" />
 
                 </RelativeLayout>
@@ -122,14 +136,6 @@
                     android:layout_weight="2"
                     android:paddingLeft="@dimen/activity_padding_left">
 
-                <Spinner
-                        android:id="@+id/edit_reset_streak"
-                        style="@style/EditorFieldStyle"
-                        android:hint="@string/hint_action_distance"
-                        android:drawSelectorOnTop="true"
-                        android:entries="@array/reset_streak"
-                        android:inputType="number"></Spinner>
-
                 </RelativeLayout>
             </LinearLayout>
             <!-- Burned Calories field -->
@@ -137,6 +143,43 @@
 
 
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:text="Interval"
+            android:textSize="20sp" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_padding_left">
+
+            <!-- Name field -->
+            <Spinner
+                android:id="@+id/edit_reset_streak"
+                style="@style/EditorFieldStyle"
+                android:layout_height="match_parent"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/reset_streak"
+                android:hint="choose one Interval"
+                android:textSize="20sp"
+                android:inputType="textCapWords"></Spinner>
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
