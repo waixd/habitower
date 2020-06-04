@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment {
     ListView listView;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
 
 
     @Nullable
@@ -282,6 +284,7 @@ public class HomeFragment extends Fragment {
         } else {
             updateEXP();
         }
+        makeTextAndShow(getActivity(), "Gain 1 EXP !!" ,Toast.LENGTH_SHORT);
     }
 
     //*update EXP value for user
@@ -356,6 +359,8 @@ public class HomeFragment extends Fragment {
 
     //** count floor for user **//
     public void updateFloor() {
+        final MediaPlayer mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.level_up);
+        mp.start();
         floor_value = Integer.parseInt((String) mfloor_tf.getText());
         floor_value += 1;
         mfloor_tf.setText(floor_value + "");
