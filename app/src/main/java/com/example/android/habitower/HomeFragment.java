@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
         List<String> nameList = readContacts(getActivity());
         CustomAdapter adapter = new CustomAdapter(getActivity(), nameList);
         listView.setAdapter(adapter);
+        listView.setEnabled(true);
         mexp_tf = view.findViewById(R.id.exp_id);
         mfloor_tf = view.findViewById(R.id.floor_id);
         mtask_tf = view.findViewById(R.id.task_id);
