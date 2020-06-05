@@ -13,21 +13,31 @@
         android:layout_below="@+id/logo_id"
         android:layout_centerHorizontal="true"
         android:text="@string/project_name"
-        android:textSize="30sp"
+        android:textSize="20sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/habitTower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/project_id"
+        android:layout_centerHorizontal="true"
+        android:text="@string/AppName"
+        android:textSize="60sp"
         android:textColor="#000000"/>
 
     <ImageView
         android:id="@+id/logo_id"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="331dp"
+        android:layout_height="326dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/lipig"
-        android:contentDescription="@string/logo" />
+        android:contentDescription="@string/logo"
+        android:src="@drawable/habitTowerCover" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/project_id"
+        android:layout_below="@+id/habitTower"
         android:layout_centerHorizontal="true"
         android:text="touch to skip the screen"
         android:textSize="10sp"
