@@ -98,17 +98,6 @@
             app:layout_constraintTop_toBottomOf="@+id/task_id" />
 
         <TextView
-            android:id="@+id/floor_textfleid2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="67dp"
-            android:text="/ F"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/floor_id"
-            app:layout_constraintTop_toBottomOf="@+id/exp_maximum" />
-
-        <TextView
             android:id="@+id/exp_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:text="Task"
+            android:text="Tasks"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exp_textview" />
@@ -150,7 +139,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="@id/twoButton"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        tools:ignore="MissingConstraints">
 
         <ListView
             android:id="@+id/listView1"

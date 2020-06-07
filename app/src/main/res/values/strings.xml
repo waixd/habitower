@@ -48,16 +48,7 @@
     <string name="hint_action_time">How many minutes?</string>
 
     <!-- Units for time of the action (minutes) [CHAR LIMIT=5] -->
-    <string name="unit_action_time">min</string>
-
-    <!-- Label for burned energy information in the editor [CHAR LIMIT=30] -->
-    <string name="category_calories">Burned Energy</string>
-
-    <!-- Text hint for energy field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_action_calories">How many Calories?</string>
-
-    <!-- Units for calories of the action (calories) [CHAR LIMIT=5] -->
-    <string name="unit_action_calories">cal</string>
+    <string name="unit_action_time">mins</string>
 
     <string name="logo">LOGO</string>
 

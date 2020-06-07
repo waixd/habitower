@@ -48,10 +48,6 @@ public class EditorActivity extends Activity {
     /**
      * EditText field to enter the body action's burned energy     */
 
-
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,11 +65,7 @@ public class EditorActivity extends Activity {
         mTimeEditText = findViewById(R.id.edit_bodyaction_time);
         mResetStreak = findViewById(R.id.edit_reset_streak);
 
-
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,7 +75,6 @@ public class EditorActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu_editor, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -132,7 +123,6 @@ public class EditorActivity extends Activity {
         values.put(BodyActionEntry.COLUMN_BODY_NAME, nameString);
         values.put(BodyActionEntry.COLUMN_BODY_TIME, time);
         values.put(BodyActionEntry.COLUMN_BODY_RESET, reset_streak);
-
 
         // Insert a new row for body action in the database, returning the ID of that new row.
         long newRowId = db.insert(BodyActionEntry.TABLE_NAME, null, values);

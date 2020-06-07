@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 SQLiteDatabase db = mDbHelper.getWritableDatabase();
                 db.execSQL("DELETE FROM body");//delete all rows in a tabl
                 db.execSQL("DELETE FROM sqlite_sequence where name ='body'");// e
-                Toast.makeText(this, "Delete All data, refresh", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Delete All data, refreshing", Toast.LENGTH_SHORT).show();
                 finish();
                 startActivity(getIntent());
                 return true;

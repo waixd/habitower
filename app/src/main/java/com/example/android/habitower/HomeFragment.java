@@ -482,10 +482,9 @@ public class HomeFragment extends Fragment {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME, "Static Bicycle");
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_NAME, "Revision (Sample)");
         values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_TIME, 30);
-        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET, "daily");
-        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_CALORIES, 170);
+        values.put(BodyActionContract.BodyActionEntry.COLUMN_BODY_RESET, "Daily");
 
         db.insert(BodyActionContract.BodyActionEntry.TABLE_NAME, null, values);
 
