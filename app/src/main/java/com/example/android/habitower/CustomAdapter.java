@@ -1,6 +1,7 @@
 package com.example.android.habitower;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class CustomAdapter extends ArrayAdapter {
         checkBoxState=new boolean[resource.size()];
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -38,7 +40,7 @@ public class CustomAdapter extends ArrayAdapter {
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems.get(position));
-        cb.setTag(new Integer(position));
+        cb.setTag(position);
         cb.setOnCheckedChangeListener(null);
 
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -47,12 +49,12 @@ public class CustomAdapter extends ArrayAdapter {
                 Integer pos = (Integer)buttonView.getTag();
                 if(isChecked){
 
-                    checkBoxState[pos.intValue()]=true;
+                    checkBoxState[pos]=true;
                     countCheck(isChecked);
 
                 }
                 else{
-                    checkBoxState[pos.intValue()]=false;
+                    checkBoxState[pos]=false;
                     Log.e("checked","unchecked");
 
                 }

@@ -89,7 +89,7 @@ public class RewardFragment extends Fragment {
                 if (reset) {
                     if (count < 5 ) {
                         count++;
-                        makeTextAndShow(getActivity(), "Grant tester right for click " + (5 - count) + " times", Toast.LENGTH_SHORT);
+                        makeTextAndShow(getActivity(), "Grant tester permission for click " + (5 - count) + " times", Toast.LENGTH_SHORT);
                         if (count == 5) {
                             makeTextAndShow(getActivity(), "get to 100 floor! You can activate all reward now!!", Toast.LENGTH_SHORT);
                             floor_stored = mfloor_tf.getText().toString();

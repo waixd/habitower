@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -278,14 +279,30 @@ public class HomeFragment extends Fragment {
     //** count exp for user **//
     public void gainEXP() {
         exp_value = Integer.parseInt((String) mexp_tf.getText());
-        if (exp_value >= 9) {
+        if (exp_value >= 10) {
             exp_value = 0;
             mexp_tf.setText(exp_value + "");
             updateFloor();
         } else {
             updateEXP();
         }
-        makeTextAndShow(getActivity(), "Gain 1 EXP !!" ,Toast.LENGTH_SHORT);
+        if (mboost_tf.getText().toString().equals("Boost: ON")) {
+            makeTextAndShow(getActivity(), "Gain " + expCount() * 2 + " EXP!!", Toast.LENGTH_SHORT);
+        } else {
+            makeTextAndShow(getActivity(), "Gain " + expCount() + " EXP!!", Toast.LENGTH_SHORT);
+            }
+    }
+
+    public int expCount() {
+        int count = 0;
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            //Replace R.id.checkbox with the id of CheckBox in your layout
+            cb = (CheckBox) listView.getChildAt(i).findViewById(R.id.checkBox1);
+            if (cb.isChecked()) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     //*update EXP value for user
@@ -293,19 +310,23 @@ public class HomeFragment extends Fragment {
         /**check if exp boost is activated**/
         exp_value = Integer.parseInt((String) mexp_tf.getText());
         if (mboost_tf.getText().toString().equals("Boost: ON")) {
-            exp_value += 2;
-            if (exp_value < 10) {
-                mexp_tf.setText(exp_value + "");
-            } else {
+            exp_value += expCount();
+            mexp_tf.setText(exp_value + "");
+            if (exp_value >= 10){
                 updateFloor();
             }
         }
         /** for exp boost not activated**/
         else {
-            exp_value += 1;
+
+            exp_value += expCount();
             mexp_tf.setText(exp_value + "");
+                if (exp_value >= 10){
+                        updateFloor();
+                }
         }
     }
+
 
     public static void exp_boost() {
         if (exp_boost_index == 0) {
@@ -367,6 +388,9 @@ public class HomeFragment extends Fragment {
         mfloor_tf.setText(floor_value + "");
         mexp_tf.setText("0");
         shareTextChange();
+        Toast levelUp = Toast.makeText(getActivity(), "Floor Up! You are doing GREAT!", Toast.LENGTH_LONG);
+        levelUp.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
+        levelUp.show();
     }
 
     /**
