@@ -27,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public static boolean reset = true;
     public static String floor_stored = "1";
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     /** set menu for optionMenu
      *
      */
@@ -58,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_catalog, menu);
         return true;
     }
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu

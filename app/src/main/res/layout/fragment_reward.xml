@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+        <TextView
             android:id="@+id/editText3"
             android:layout_width="131dp"
             android:layout_height="54dp"
@@ -24,11 +24,13 @@
             android:inputType="textPersonName"
             android:text="10F"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
             app:layout_constraintBottom_toTopOf="@+id/exp_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText4"
             android:layout_width="131dp"
             android:layout_height="54dp"
@@ -39,12 +41,14 @@
             android:inputType="textPersonName"
             android:text="40F"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
             app:layout_constraintBottom_toTopOf="@+id/job_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bg_button"
             app:layout_constraintVertical_bias="1.0" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText5"
             android:layout_width="131dp"
             android:layout_height="54dp"
@@ -55,6 +59,8 @@
             android:inputType="textPersonName"
             android:text="20F"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
             app:layout_constraintBottom_toTopOf="@+id/background_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText"
@@ -141,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/bg_button"
             app:srcCompat="@drawable/question_icon" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText"
             android:layout_width="266dp"
             android:layout_height="85dp"
@@ -150,6 +156,8 @@
             android:inputType="textPersonName"
             android:text="Activate your reward !"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,7 +171,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/treasure" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText2"
             android:layout_width="131dp"
             android:layout_height="54dp"
@@ -174,6 +182,8 @@
             android:inputType="textPersonName"
             android:text="30F"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
             app:layout_constraintBottom_toTopOf="@+id/avatar_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exp_button"

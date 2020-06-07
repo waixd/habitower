@@ -32,7 +32,7 @@
         android:layout_height="326dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/logo"
-        android:src="@drawable/habitTowerCover" />
+        android:src="@drawable/app_cover" />
 
     <TextView
         android:layout_width="wrap_content"
